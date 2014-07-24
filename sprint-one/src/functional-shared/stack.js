@@ -5,9 +5,7 @@ var makeStack = function() {
   	Size: 0,
   	storage: {}
   }
-  instance.push = stackMethods.push;
-  instance.pop = stackMethods.pop;
-  instance.size = stackMethods.size;
+  _.extend(instance, stackMethods);
   return instance;
 };
 
