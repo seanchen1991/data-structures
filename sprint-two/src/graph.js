@@ -35,13 +35,10 @@ Graph.prototype.contains = function(node){
 Graph.prototype.removeNode = function(node){
   var removedVertex = this._collection[node];
   if (removedVertex !== undefined) {
-    delete this._collection[node];
-    var adjacent = removedVertex.list[0];
     for (var i = 0, x = removedVertex.list.length; i < x; i++) {
-      if (removedVertex.list[i] === removedVertex.value) {
-        removedVertex.list[i] = undefined;
-      }
+      this.removeEdge(node, removedVertex.list[i]);
     }
+    delete this._collection[node];
   }
 };
 
