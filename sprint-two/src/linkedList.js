@@ -35,7 +35,7 @@ var makeLinkedList = function(){
       }
     }
     return true;
-  }
+  };
   return list;
 };
 
