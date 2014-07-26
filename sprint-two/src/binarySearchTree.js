@@ -1,52 +1,69 @@
-var makeBinarySearchTree = function(value) {
-  var newBST = {};
-  newBST.value = value;
-  newBST.left = undefined;
-  newBST.right = undefined;
-  _.extend(newBST, bstMethods);
-  return newBST;
+var makeBinarySearchTree = function(value){
+  var node = {};
+  node.value = value;
+  node.parent = undefined;
+  node.left = undefined;
+  node.right = undefined;
+  _.extend(node, nodeMethods);
+  return node;
 };
 
-var bstMethods = {};
+var nodeMethods = {};
 
-bstMethods.insert = function(value) {
-  if (value < this.value) {
-    if (this.left === undefined) {
-      this.left = makeBinarySearchTree(value);
-    } else {
+nodeMethods.insert = function(value) {
+  if(value <= this.value){
+    if(this.left !== undefined){
       this.left.insert(value);
+    }else{
+      this.left = makeBinarySearchTree(value);
+      this.left.parent = this;
     }
-  } else if (value > this.value) {
-    if (this.right === undefined) {
-      this.right = makeBinarySearchTree(value);
-    } else {
+  }else{
+    if(this.right !== undefined){
       this.right.insert(value);
+    }else{
+      this.right = makeBinarySearchTree(value);
+      this.right.parent = this;
     }
   }
 };
 
-bstMethods.contains = function(value) {
-  if (value === this.value) {
+nodeMethods.contains = function(value) {
+  if(value === this.value){
     return true;
-  } else if (value < this.value) {
-    if (this.left !== undefined) {
-      return this.left.contains(value);
+  }
+  if(this.left !== undefined){
+    if(this.left.contains(value)){
+      return true;
     }
-  } else if (value > this.value) {
-    if (this.right !== undefined) {
-      return this.right.contains(value);
+  }
+  if(this.right !== undefined){
+    if(this.right.contains(value)){
+      return true;
     }
   }
   return false;
 };
 
-bstMethods.depthFirstLog = function(callback) {
+nodeMethods.depthFirstLog = function(callback) {
   callback(this.value);
   if(this.left !== undefined){
     this.left.depthFirstLog(callback);
   }
   if(this.right !== undefined){
     this.right.depthFirstLog(callback);
+  }
+};
+
+nodeMethods.removeFromParent = function() {
+  if (this.parent !== undefined) {
+    var parentNode = this.parent;
+    if(parentNode.left === this){
+      parentNode.left = undefined;
+    }else{
+      parentNode.right = undefined;
+    }
+    this.parent = undefined;
   }
 };
 

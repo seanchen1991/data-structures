@@ -37,4 +37,14 @@ describe('binarySearchTree', function() {
     console.log(array);
     expect(array).to.eql([5,2,3]);
   });
+
+  it("should remove the node with the given value along with all the node's corrensponding children", function() {
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(8);
+    binarySearchTree.insert(2);
+    binarySearchTree.left.removeFromParent();
+    expect(binarySearchTree.contains(3)).to.equal(false);
+    expect(binarySearchTree.contains(2)).to.equal(false);
+  });
+
 });

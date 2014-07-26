@@ -4,7 +4,15 @@ var makeDoublyLinkedList = function() {
   list.tail = null;
 
   list.addToHead = function(value) {
-
+    var node = makeNode(value);
+    if (this.tail === null) {
+      this.tail = node;
+      this.head = this.tail;
+    } else {
+      this.head.previous = node;
+      node.next = this.head;
+      this.head = node;
+    }
   };
 
   list.addToTail = function(value) {
@@ -28,7 +36,12 @@ var makeDoublyLinkedList = function() {
   };
 
   list.removeTail = function() {
-
+    if (this.tail !== null) {
+      var current = this.tail;
+      this.tail = this.tail.previous;
+      this.tail.next = null;
+      return current.value;
+    }
   };
 
   list.contains = function(target) {
