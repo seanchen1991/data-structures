@@ -5,6 +5,7 @@ var makeLinkedList = function(){
 
   list.addToTail = function(value){
     var node = makeNode(value);
+    var current;
     if (this.head === null) {
       this.head = node;
       this.tail = this.head;
@@ -34,7 +35,7 @@ var makeLinkedList = function(){
       }
     }
     return true;
-  }
+  };
   return list;
 };
 
@@ -46,7 +47,6 @@ var makeNode = function(value){
 
   return node;
 };
-
 
 /*
  * Complexity: What is the time complexity of the above functions?

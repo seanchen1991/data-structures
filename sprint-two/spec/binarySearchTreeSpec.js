@@ -46,5 +46,4 @@ describe('binarySearchTree', function() {
     expect(binarySearchTree.contains(3)).to.equal(false);
     expect(binarySearchTree.contains(2)).to.equal(false);
   });
-
 });

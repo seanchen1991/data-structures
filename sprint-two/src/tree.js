@@ -10,12 +10,15 @@ var treeMethods = {};
 
 treeMethods.addChild = function(value){
   if (this.children === undefined) {
+
   	this.children = [];
+
   }
   this.children[this.children.length] = makeTree(value);
 };
 
 treeMethods.contains = function(target){
+
   if (this.value === target) {
   	return true;
   } else {

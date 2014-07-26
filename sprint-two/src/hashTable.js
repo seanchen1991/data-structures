@@ -8,7 +8,9 @@ HashTable.prototype.insert = function(k, v){
   obj[k] = v;
   var i = getIndexBelowMaxForKey(k, this._limit);
   if (this._storage[i] === undefined) {
+
     this._storage[i] = makeLinkedList();
+
     this._storage[i].addToTail(obj);
   } else {
     this._storage[i].addToTail(obj);
