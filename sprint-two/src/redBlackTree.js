@@ -1,9 +1,9 @@
-var makeBinarySearchTree = function(value){
+var makeRedBlackTree = function(value){
   var node = {};
   node.value = value;
-  node.parent = undefined;
   node.left = undefined;
   node.right = undefined;
+  node.color = 'black';
   _.extend(node, nodeMethods);
   return node;
 };
@@ -15,15 +15,13 @@ nodeMethods.insert = function(value) {
     if(this.left !== undefined){
       this.left.insert(value);
     }else{
-      this.left = makeBinarySearchTree(value);
-      this.left.parent = this;
+      this.left = makeRedBlackTree(value);
     }
   }else{
     if(this.right !== undefined){
       this.right.insert(value);
     }else{
-      this.right = makeBinarySearchTree(value);
-      this.right.parent = this;
+      this.right = makeRedBlackTree(value);
     }
   }
 };
@@ -52,18 +50,6 @@ nodeMethods.depthFirstLog = function(callback) {
   }
   if(this.right !== undefined){
     this.right.depthFirstLog(callback);
-  }
-};
-
-nodeMethods.removeFromParent = function(value) {
-  if (this.parent !== undefined) {
-    var parentNode = this.parent;
-    if(parentNode.left.value === value){
-      parentNode.left = undefined;
-    }else{
-      parentNode.right = undefined;
-    }
-    this.parent = undefined;
   }
 };
 
