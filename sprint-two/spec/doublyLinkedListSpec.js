@@ -1,8 +1,8 @@
-describe('linkedList', function() {
+describe('DoublyLinkedList', function() {
   var linkedList;
 
   beforeEach(function() {
-    linkedList = makeLinkedList();
+    linkedList = makeDoublyLinkedList();
   });
 
   it('should have a head and tail', function() {
